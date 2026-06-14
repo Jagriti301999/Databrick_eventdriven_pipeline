@@ -1,0 +1,28 @@
+/*
+SHOW EXTERNAL LOCATIONS;
+DROP EXTERNAL LOCATION new_ext_loc FORCE;
+SHOW VOLUMES IN incremental_load.default;
+SHOW TABLES IN incremental_load.default;
+DROP TABLE IF EXISTS incremental_load.default.order_stage;
+
+
+SELECT current_catalog(), current_schema();
+DESCRIBE CATALOG EXTENDED workspace;
+
+DESCRIBE SCHEMA EXTENDED incremental_load.default;
+DESCRIBE CATALOG EXTENDED incremental_load;
+
+DROP EXTERNAL LOCATION new_ext_loc FORCE;
+CREATE EXTERNAL LOCATION new_ext_loc
+URL 'gs://incremental_load_path/'
+WITH (STORAGE CREDENTIAL databricks_ext_credential);
+
+DROP CATALOG incremental_load CASCADE;
+CREATE CATALOG incremental_load MANAGED LOCATION 'gs://incremental_load_path/';
+
+SHOW VOLUMES IN incremental_load.default;
+DROP VOLUME incremental_load.default.source;
+
+CREATE EXTERNAL VOLUME incremental_load.default.orders_data
+LOCATION 'gs://incremental_load_path/source/';
+*/

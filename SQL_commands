@@ -26,3 +26,6 @@ DROP VOLUME incremental_load.default.source;
 CREATE EXTERNAL VOLUME incremental_load.default.orders_data
 LOCATION 'gs://incremental_load_path/source/';
 */
+
+
+select * from orders_target;
